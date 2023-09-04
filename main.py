@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from domain.question import question_router
+
 app = FastAPI()
 
 # Allow requests from the React application (adjust origins as needed)
@@ -17,9 +19,7 @@ app.add_middleware(
 )
 
 
-@app.get("/hello")
-def hello():
-    return {"message": "안녕하세요 파이보"}
+app.include_router(question_router.router)
 
 
 # uvicorn main:app --reload
