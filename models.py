@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -10,6 +10,14 @@ class Question(Base):
     id = Column(Integer, primary_key=True)
     subject = Column(String, nullable=False)
     content = Column(Text, nullable=False)
+    imgUrl= Column(String, nullable=False)
+    userImgUrl= Column(String, nullable=False)
+    brandName= Column(String, nullable=False)
+    productName= Column(String, nullable=False)
+    option= Column(String, nullable=False)
+    date = Column(DateTime, nullable=False)
+    price= Column(Integer, nullable=False)
+    isPhotoReviewed= Column(Boolean, nullable=False)
     create_date = Column(DateTime, nullable=False)
 
 

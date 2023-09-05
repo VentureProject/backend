@@ -1,25 +1,31 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-
-from domain.question import question_router
 
 app = FastAPI()
 
-# Allow requests from the React application (adjust origins as needed)
-origins = [
-    "http://localhost:3000",
-]
-
+# Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+received_modal_data = {}
 
-app.include_router(question_router.router)
+@app.post("/")
+async def receive_modal_data(modal_data: dict):
+    global received_modal_data
+    received_modal_data = modal_data
+    return {"message": "Data received successfully"}
 
+@app.get('/photoReview')
+async def get_photo_review():
+    global received_modal_data
+    received_modal_data['isPhotoReviewed'] = False
+    received_modal_data['whyRejected'] = "전신이 나오도록 촬영해주세요"
+    return received_modal_data
+
+# uvicorn main:app --reload
 
 # uvicorn main:app --reload

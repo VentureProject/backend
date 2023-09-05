@@ -4,9 +4,16 @@ from pydantic import BaseModel, validator
 
 
 class Question(BaseModel):
-    id: int
     subject: str
     content: str
+    imgUrl = str
+    userImgUrl = str
+    brandName = str
+    productName = str
+    option = str
+    date = str
+    price = int
+    isPhotoReviewed = bool
     create_date: datetime.datetime
 
     class Config:
@@ -15,6 +22,14 @@ class Question(BaseModel):
 class QuestionCreate(BaseModel):
     subject: str
     content: str
+    imgUrl = str
+    userImgUrl = str
+    brandName = str
+    productName = str
+    option = str
+    date = str
+    price = int
+    isPhotoReviewed = bool
 
     @validator('subject', 'content')
     def not_empty(cls, v):

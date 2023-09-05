@@ -19,14 +19,14 @@ def get_question(db: Session, question_id: int):
 def create_question(db: Session, question_create: QuestionCreate):
     db_question = Question(subject=question_create.subject,
                            content=question_create.content,
-                           imgUrl=question_create.,
-                            userImgUrl = question_create.,
-                            brandName = question_create.,
-                            productName = question_create.,
-                            option = question_create.,
-                            date = question_create.,
-                            price = question_create.,
-                            isPhotoReviewed = question_create.,
+                           imgUrl=question_create.imgUrl,
+                            userImgUrl = question_create.userImgUrl,
+                            brandName = question_create.brandName,
+                            productName = question_create.productName,
+                            option = question_create.option,
+                            date = question_create.date,
+                            price = question_create.price,
+                            isPhotoReviewed = question_create.isPhotoReviewed,
                            create_date=datetime.now())
     db.add(db_question)
     db.commit()
